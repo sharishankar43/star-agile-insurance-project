@@ -1,0 +1,25 @@
+pipeline {
+  agent any
+    tools{
+      maven 'M2_HOME'
+    }
+   stages{
+    stage('Git checkout'){
+      steps{
+         echo 'This is for cloning the Gitrepo'
+         git "git 'https://github.com/sharishankar43/star-agile-insurance-project.git'"
+      }
+    }
+    stage('Create a Package'){
+      steps{
+         echo "This will create a package using maven"
+         sh 'mvn package'
+      }
+    }
+    stage('Publish the HTML reports'){
+      steps{
+         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Insure-Project/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+      }
+    }
+   }
+}
