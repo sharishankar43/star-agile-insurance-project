@@ -1,4 +1,4 @@
-- name: Docker Configure in GCP VM-Machine
+- name: Docker Configure VM-Machine
   hosts: all
   become: true
   connection: ssh
