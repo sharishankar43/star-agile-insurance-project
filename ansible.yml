@@ -4,15 +4,15 @@
   connection: ssh
   tasks:
   - name: Updating the New VM machine
-    command: apt update -y
+    command: sudo apt update -y
 
   - name: Install Docker
-    command: apt-get install docker.io -y
+    command: sudo apt-get install docker.io -y
     become: yes
     become_user: root
 
   - name: Start Docker service
-    command: systemctl start docker
+    command: sudo systemctl start docker
     become: yes
     become_user: root
 
